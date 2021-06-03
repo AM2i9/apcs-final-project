@@ -1,2 +1,6 @@
+# Compiled Files
 */__pycache__/
+
+# Editor and Enviroment files
 env/
+.vscode/
