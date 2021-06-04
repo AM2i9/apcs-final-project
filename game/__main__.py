@@ -15,7 +15,6 @@ while True:
             pygame.quit()
             sys.exit()
 
-    print(game.maze.x, game.maze.y, end='\r')
     bindings.checkKeyEvents()
 
     game.screen.fill((146, 146, 146))

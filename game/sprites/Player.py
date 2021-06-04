@@ -11,9 +11,9 @@ class Player(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
 
         screenSize = game.screen.get_size()
-        self.rect.midtop = (
+        self.rect.center = (
             (screenSize[0]/2),
-            (screenSize[1]/2) - (self.rect.height/2)
+            (screenSize[1]/2)
         )
     
     def update(self):

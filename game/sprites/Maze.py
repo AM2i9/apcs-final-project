@@ -33,7 +33,7 @@ class Maze(pygame.sprite.Sprite):
             (screenSize[1]/2) + 140
         )
 
-        game.maze.set_location(*startLocation)
+        game.maze.set_location(*startLocation, start=True)
 
     def update(self):
         self.image, self.rect = self.states[int(game.maze.unlocked)]
