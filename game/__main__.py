@@ -2,6 +2,11 @@ import pygame
 import sys
 
 import game
+import game.keys as bindings
+import game.sprites as sprites
+
+game.playerSprite = sprites.sprites["Player"]
+game.mazeSprite = sprites.sprites["Maze"]
 
 while True:
 
@@ -10,5 +15,9 @@ while True:
             pygame.quit()
             sys.exit()
 
-    game.screen.blit(game.background, (0,0))
+    print(game.maze.x, game.maze.y, end='\r')
+    bindings.checkKeyEvents()
+
+    game.screen.fill((146, 146, 146))
+    sprites.update(game.screen)
     pygame.display.flip()

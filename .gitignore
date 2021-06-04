@@ -1,5 +1,5 @@
 # Compiled Files
-*/__pycache__/
+__pycache__/
 
 # Editor and Enviroment files
 env/
