@@ -6,35 +6,39 @@ class _maze:
     x = 0
     y = 0
 
+    x_vel = 0
+    y_vel = 0
+
     speed = 1
     unlocked = False
 
-    def check_player_collision(self):
-        return game.playerSprite.mask.overlap(game.mazeSprite.mask, (
-            game.mazeSprite.rect.x - game.playerSprite.rect.x,
-            game.mazeSprite.rect.y - game.playerSprite.rect.y
-        ))
+    def set_x_vel(self,vel):
+        self.x_vel = vel * self.speed
 
-    def set_x(self, x):
-        self.set_location(x, self.y)
-    
-    def change_x(self, change):
-        self.set_location(self.x + change, self.y)
-    
-    def set_y(self, y):
-        self.set_location(self.x, y)
-    
-    def change_y(self, change):
-        self.set_location(self.x, self.y + change)
+    def set_y_vel(self,vel):
+        self.y_vel = vel * self.speed
 
-    def set_location(self, x, y, start=False):
-        _prev_x, _prev_y = self.x, self.y
+    def updatepos(self):
+        self.x += self.x_vel
+        self.y += self.y_vel
+        self.check_collisions()
+
+    def set_location(self,x,y):
         self.x, self.y = x, y
-        print(x,y,_prev_x,_prev_y)
-        if not start and self.check_player_collision():
-            print("There is a collision")
-            print(self.x, self.y)
-            self.x, self.y = _prev_x, _prev_y
-            print(self.x, self.y)
-           
+
+    def check_collisions(self):
+
+        offset = (
+            (game.mazeSprite.rect.x - game.playerSprite.rect.x),
+            (game.playerSprite.rect.y - game.mazeSprite.rect.y)
+            )
+
+        collision = pygame.sprite.collide_mask(game.mazeSprite, game.playerSprite)
+
+        if collision:
+            print('c', collision)
+            if self.x_vel > 0:
+                self.x = collision[0] + offset[0]
+                print(offset)
+                print(self.x, self.y)
         

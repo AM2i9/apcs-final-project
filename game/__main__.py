@@ -15,8 +15,12 @@ while True:
             pygame.quit()
             sys.exit()
 
+    game.maze.set_x_vel(0)
+    game.maze.set_y_vel(0)
+
     bindings.checkKeyEvents()
 
     game.screen.fill((146, 146, 146))
     sprites.update(game.screen)
+    game.maze.updatepos()
     pygame.display.flip()
