@@ -1,7 +1,9 @@
 import pygame
+import sys
 
 import game
 
+# List of key bindings
 bindings = [
     {
         "key": pygame.K_UP,
@@ -25,9 +27,21 @@ bindings = [
     }
 ]
 
-def checkKeyEvents():
-    keysPressed = pygame.key.get_pressed()
+def loop():
+    """
+    Main event loop
+    """
 
+    for event in pygame.event.get():
+
+        # Quit event
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+    # Execute key bindings
+    keysPressed = pygame.key.get_pressed()
+    
     for bind in bindings:
         key = bind['key']
         alt = bind['alt-key']

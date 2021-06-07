@@ -1,9 +1,6 @@
 import pygame
 
+# Initialize pygame and create the screen
+# Screen has 480p resolution
 pygame.init()
-
-maze = None
-
-playerSprite = None
-
 screen = pygame.display.set_mode((640,480))

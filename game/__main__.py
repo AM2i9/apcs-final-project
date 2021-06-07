@@ -1,25 +1,27 @@
 import pygame
-import sys
 
 import game
-import game.keys as bindings
+import game.events as events
 import game.sprites as sprites
 
-game.playerSprite = sprites.sprites["Player"]
-game.maze = sprites.sprites["Maze"]
+game.loaded_sprites = sprites.load_sprites()
+
+# Create the player and maze sprites
+game.player = game.loaded_sprites["Player"]
+game.maze = game.loaded_sprites["Maze"]
 
 while True:
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-
+    # Reset velocities
     game.maze.set_x_vel(0)
     game.maze.set_y_vel(0)
 
-    bindings.checkKeyEvents()
+    # Check events
+    events.loop()
 
+    # Draw graphics
     game.screen.fill((146, 146, 146))
-    sprites.update(game.screen)
+    sprites.update(game.screen, game.loaded_sprites)
+
+    # Update the display
     pygame.display.flip()
