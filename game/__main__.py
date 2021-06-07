@@ -6,7 +6,7 @@ import game.keys as bindings
 import game.sprites as sprites
 
 game.playerSprite = sprites.sprites["Player"]
-game.mazeSprite = sprites.sprites["Maze"]
+game.maze = sprites.sprites["Maze"]
 
 while True:
 
@@ -22,5 +22,4 @@ while True:
 
     game.screen.fill((146, 146, 146))
     sprites.update(game.screen)
-    game.maze.updatepos()
     pygame.display.flip()

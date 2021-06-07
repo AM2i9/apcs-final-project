@@ -4,6 +4,13 @@ import game
 import game.utils as utils
 
 class Maze(pygame.sprite.Sprite):
+
+    x_vel = 0
+    y_vel = 0
+
+    speed = 1
+    unlocked = False
+
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
 
@@ -33,15 +40,29 @@ class Maze(pygame.sprite.Sprite):
             (screenSize[1]/2) + 140
         )
 
-        game.maze.set_location(*startLocation)
+        self.rect.bottomleft = startLocation
 
     def update(self):
-        self.image, self.rect = self.states[int(game.maze.unlocked)]
-        if game.maze.unlocked and not self.unlocked:
+        self.image, self.rect = self.states[int(self.unlocked)]
+        if self.unlocked:
             self.unlocked = True
             self.mask = pygame.mask.from_surface(self.image)
+
+        x, y = self.rect.topleft
         
-        self.rect.bottomleft = (game.maze.x, game.maze.y)
+        self.rect.x = x + self.x_vel
+        if self.collision(): self.rect.x = x - self.x_vel
+        self.rect.y = y + self.y_vel
+        if self.collision(): self.rect.y = y - self.y_vel
+
+    def set_x_vel(self,vel):
+        self.x_vel = vel * self.speed
+
+    def set_y_vel(self,vel):
+        self.y_vel = vel * self.speed
+    
+    def collision(self):
+        return bool(pygame.sprite.collide_mask(self, game.playerSprite))
 
 def load_sprite():
     return Maze()
