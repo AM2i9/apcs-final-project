@@ -13,7 +13,7 @@ class Maze(pygame.sprite.Sprite):
     speed = 1
 
     # State
-    state = 0
+    state = 1
 
     def __init__(self):
         """
@@ -29,8 +29,8 @@ class Maze(pygame.sprite.Sprite):
         l_size = locked.get_size()
         ul_size = unlocked.get_size()
 
-        scaled_l = pygame.transform.scale(locked, (int(l_size[0]*0.7), int(l_size[1]*0.7)))
-        scaled_ul = pygame.transform.scale(unlocked, (int(ul_size[0]*0.7), int(ul_size[1]*0.7)))
+        scaled_l = pygame.transform.scale(locked, (int(l_size[0]*0.9), int(l_size[1]*0.9)))
+        scaled_ul = pygame.transform.scale(unlocked, (int(ul_size[0]*0.9), int(ul_size[1]*0.9)))
 
         # Saving the scaled images into a list
         self.states = [
@@ -62,6 +62,7 @@ class Maze(pygame.sprite.Sprite):
         # Set state of maze
         self.image, self.rect = self.states[self.state]
         if self.state == 1:
+            self.state = -1
             self.mask = pygame.mask.from_surface(self.image)
 
         # Get the current coordinate of the top left corner of the maze sprite
