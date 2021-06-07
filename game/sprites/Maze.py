@@ -5,6 +5,10 @@ import game.utils as utils
 
 class Maze(pygame.sprite.Sprite):
 
+    # Coordinates
+    x = 0
+    y = 0
+
     # Velocities
     x_vel = 0
     y_vel = 0
@@ -13,7 +17,7 @@ class Maze(pygame.sprite.Sprite):
     speed = 1
 
     # State
-    state = 1
+    state = 0
 
     def __init__(self):
         """
@@ -53,11 +57,15 @@ class Maze(pygame.sprite.Sprite):
         )
 
         self.rect.bottomleft = startLocation
+        self.x, self.y = self.rect.topleft
 
     def update(self):
         """
         Sprite update method. Executed every loop of the mainloop.
         """
+
+        # Get the current coordinate of the top left corner of the maze sprite
+        self.x, self.y = self.rect.topleft
 
         # Set state of maze
         self.image, self.rect = self.states[self.state]
@@ -65,17 +73,17 @@ class Maze(pygame.sprite.Sprite):
             self.state = -1
             self.mask = pygame.mask.from_surface(self.image)
 
-        # Get the current coordinate of the top left corner of the maze sprite
-        x, y = self.rect.topleft
+            # Moves new rect to the location of the previous rect
+            self.rect.topleft = (self.x, self.y)
         
         # Move the mazes X coordinate, and move it back if it collides with the player
-        self.rect.x = x + self.x_vel
-        if self.collision(): self.rect.x = x - self.x_vel
+        self.rect.x = self.x + self.x_vel
+        if self.collision(): self.rect.x = self.x - self.x_vel
 
 
         # Move the mazes Y coordinate, and move it back if it collides with the player
-        self.rect.y = y + self.y_vel
-        if self.collision(): self.rect.y = y - self.y_vel
+        self.rect.y = self.y + self.y_vel
+        if self.collision(): self.rect.y = self.y - self.y_vel
 
     def set_x_vel(self,vel):
         """

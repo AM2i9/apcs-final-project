@@ -12,6 +12,10 @@ game.maze = game.loaded_sprites["Maze"]
 
 while True:
 
+    # Checking if the player has reached the end zone
+    if (-2744 > game.maze.rect.x > -3042 and game.maze.rect.y > 237):
+        break
+
     # Reset velocities
     game.maze.set_x_vel(0)
     game.maze.set_y_vel(0)
