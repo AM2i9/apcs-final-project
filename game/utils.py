@@ -1,7 +1,7 @@
-import os
 import pygame
 from pygame.constants import RLEACCEL
 
+# Stole it from the pygame docs, just to let you know :)
 def load_image(name, colorkey=None):
     """
     Loads an image from the assets folder
