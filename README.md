@@ -1,3 +1,3 @@
 # Maze Game
 
-To run, open the `Shell` tab and run `./start`
+Run game with `python -m game`

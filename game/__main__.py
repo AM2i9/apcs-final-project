@@ -13,10 +13,10 @@ game.maze = game.loaded_sprites["Maze"]
 # Overrides
 
 # Player Speed:
-# game.maze.speed = 5
+game.maze.speed = 2
 
 # Start with maze unlocked (0: Locked, 1: Unlocked)
-game.maze.state = 1
+# game.maze.state = 1
 
 # End screen stuff
 font = pygame.font.SysFont('Ariel',  60)
