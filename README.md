@@ -1,4 +1,3 @@
-# TODO
+# Maze Game
 
-- Monster? Maybe?
-- Start and end screen
+To run, open the `Shell` tab and run `./start`

@@ -1,6 +1,8 @@
 import pygame
 
+screen_size = (640,480)
+
 # Initialize pygame and create the screen
-# Screen has 480p resolution
 pygame.init()
-screen = pygame.display.set_mode((1280,720))
+screen = pygame.display.set_mode(screen_size)
+running = True
